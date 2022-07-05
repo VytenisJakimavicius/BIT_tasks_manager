@@ -1,25 +1,21 @@
-
 <div class="components">
     @extends('components.header')
     @section('content')
 </div>
-
     <div class="main">
         <table class="table table-striped" background-color= "green";>
-            <tr>
-                <th>@sortablelink('id', 'ID')</th>
+            <tr class = "tr">
+                <th>@sortablelink('id', 'Nr')</th>
                 <th>@sortablelink('task_name', 'Name')</th>
-                <th>@sortablelink('task_description', 'Description')</th>
                 <th>@sortablelink('status_id', 'Status')</th>
                 <th>@sortablelink('created_at', 'Created')</th>
                 <th>@sortablelink('updated_at', 'Last Edited')</th>
-                <th>Actions</th>
+                <th></th>
             </tr>
             @foreach ($task as $taskdata)
             <tr>
                 <td>{{$taskdata->id}}</td>
                 <td>{{$taskdata->task_name}}</td>
-                <td>{!!  html_entity_decode($taskdata->task_description) !!}</td>
                 <td>{{$taskdata->taskstatus->name}}</td>
                 <td>{{$taskdata->created_at}}</td>
                 <td>{{$taskdata->updated_at}}</td>

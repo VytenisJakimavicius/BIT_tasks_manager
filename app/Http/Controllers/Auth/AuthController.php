@@ -72,21 +72,6 @@ class AuthController extends Controller
         $check = $this->create($data);
         return redirect()->route('task.index');
     }
-    
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function dashboard()
-    {
-        if(Auth::check()){
-            return view('dashboard');
-        }
-  
-        return redirect("login")->withSuccess('Opps! You do not have access');
-    }
-    
     /**
      * Write code on Method
      *
