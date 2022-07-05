@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Status;
+use Auth;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use Sortable;
@@ -17,16 +18,25 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $task = Task::sortable()->paginate(10);
-        $status = Status::all();
-        return view("task.index", ['task'=>$task, 'status'=>$status]);
+
+        if(Auth::check())
+        {
+            $task = Task::sortable()->paginate(10);
+            $status = Status::all();
+            return view("task.index", ['task'=>$task, 'status'=>$status]);
+        }
+        return view('auth.login');
     }
 
     public function filterindex(Request $request)
     {
-        $status_id = $request->status_id;
-        $task = Task::where('status_id', '=' , $status_id)->sortable()->paginate(10);
-        return view("task.filterindex", ['task'=>$task]);
+        if(Auth::check())
+        {
+            $status_id = $request->status_id;
+            $task = Task::where('status_id', '=' , $status_id)->sortable()->paginate(10);
+            return view("task.filterindex", ['task'=>$task]);
+        }
+        return view('auth.login');
     }
 
     /**
@@ -36,8 +46,12 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $status = Status::all();
-        return view("task.create", ['status'=>$status]);
+        if(Auth::check())
+        {
+            $status = Status::all();
+            return view("task.create", ['status'=>$status]);
+        }
+        return view('auth.login');
     }
 
     /**
@@ -48,12 +62,12 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        $task = new Task;
-        $task->task_name = $request->name;
-        $task->task_description = $request->description;
-        $task->status_id = $request->status;
-        $task->save();
-        return redirect()->route('task.index');
+            $task = new Task;
+            $task->task_name = $request->name;
+            $task->task_description = $request->description;
+            $task->status_id = $request->status;
+            $task->save();
+            return redirect()->route('task.index');
     }
 
     /**
@@ -64,8 +78,11 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        
-        return view("task.show", ['task'=>$task]);
+        if(Auth::check())
+        {
+            return view("task.show", ['task'=>$task]);
+        }
+        return view('auth.login');
     }
 
     /**
@@ -76,8 +93,12 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        $status = Status::all();
-        return view("task.edit", ['task'=>$task, 'status'=>$status]);
+        if(Auth::check())
+        {        
+            $status = Status::all();
+            return view("task.edit", ['task'=>$task, 'status'=>$status]);
+        }
+        return view('auth.login');
     }
 
     /**
@@ -89,12 +110,13 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        $task->task_name = $request->name;
-        $task->task_description = $request->description;
-        $task->status_id = $request->status;
-        $task->save();
-        return redirect()->route('task.show', ['task'=>$task]);
+            $task->task_name = $request->name;
+            $task->task_description = $request->description;
+            $task->status_id = $request->status;
+            $task->save();
+            return redirect()->route('task.show', ['task'=>$task]);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -104,7 +126,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $task->delete();
-        return redirect()->route('task.index');
+            $task->delete();
+            return redirect()->route('task.index');
+
     }
 }

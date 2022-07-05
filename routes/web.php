@@ -36,3 +36,10 @@ Route::prefix('status')->group(function() {
     Route::post('store', 'App\Http\Controllers\StatusController@store')->name('status.store');
     Route::post('destroy/{status}', 'App\Http\Controllers\StatusController@destroy' )->name('status.destroy');
 });
+
+
+Route::get('login', 'App\Http\Controllers\Auth\AuthController@index')->name('login');
+Route::get('registration', 'App\Http\Controllers\Auth\AuthController@registration')->name('register');
+Route::post('post-registration', 'App\Http\Controllers\Auth\AuthController@postRegistration')->name('register.post');
+Route::post('post-login', 'App\Http\Controllers\Auth\AuthController@postLogin')->name('login.post'); 
+Route::get('logout', 'App\Http\Controllers\Auth\AuthController@logout')->name('logout');

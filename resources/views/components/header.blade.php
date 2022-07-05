@@ -18,6 +18,8 @@
         <a class="btn btn-secondary createbtn" href="{{route('task.index')}}">Back To Main</a>
         <a class="btn btn-secondary createbtn" href="{{route('status.index')}}">Edit Statuses</a>
         <a class="btn btn-secondary createbtn" href="{{route('task.create')}}">Add New Task</a>
+        <a class="btn btn-secondary createbtn" href="{{route('logout')}}">Logout</a>
+        <a class="btn btn-secondary createbtn" href="{{route('register')}}">Create New User</a>
         </div>
         <div class="container">
         @yield('content')

@@ -33,6 +33,6 @@
     </div>
 
     <div class="pagination">
-    {!! $task->appends(Request::except('page'))->render() !!}
+        {!! $task->appends(Request::except('page'))->render() !!}
     </div>
 @endsection
