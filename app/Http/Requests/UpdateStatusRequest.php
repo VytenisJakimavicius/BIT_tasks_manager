@@ -24,7 +24,20 @@ class UpdateStatusRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|min:3|max:16',
         ];
     }
+        /**
+   * Get the error messages for the defined validation rules.
+   *
+   * @return array
+   */
+  public function messages()
+  {
+      return [
+          'name.required' => 'Task title must be entered',
+          'name.min' => 'Title must be between 3 and 16 characters',
+          'name.max' => 'Name must be between 3 and 16 characters',
+      ];
+  }
 }
