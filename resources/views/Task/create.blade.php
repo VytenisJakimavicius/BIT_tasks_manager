@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Task Manager</title>
         <!-- Styles and Scripts-->
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +22,7 @@
         <div class="createtitle">Add new task</div>
        
             
-<form method='POST' action="{{route('task.store')}}">@csrf
+<form method='POST' action="{{route('task.store')}}" enctype="multipart/form-data">@csrf
             <div class="personaldetails"> 
                 <div class="row mb-3">
                     <div class="col-md-6">
@@ -32,14 +33,15 @@
 
 
 
-            <div class="personaldetails"> 
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="description" placeholder="Task Description:" required autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="personaldetails"> 
+<div class="row mb-3">
+<div class="col-md-6">
+
+<textarea class="ckeditor form-control" name="description">Task Description:</textarea>
+</div>
+</div>
+</div>
+</div>
 
         <div class="personaldetails"> 
                 <div class="row mb-3">

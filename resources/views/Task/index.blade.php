@@ -45,7 +45,7 @@
         <tr>
             <td>{{$taskdata->id}}</td>
             <td>{{$taskdata->task_name}}</td>
-            <td>{{$taskdata->task_description}}</td>
+            <td>{!!  html_entity_decode($taskdata->task_description) !!}</td>
             <td>{{$taskdata->taskstatus->name}}</td>
             <td>{{$taskdata->created_at}}</td>
             <td>{{$taskdata->updated_at}}</td>

@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Task Manager</title>
         <!-- Styles and Scripts-->
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +35,8 @@
 <div class="personaldetails"> 
     <div class="row mb-3">
         <div class="col-md-6">
-            <input class="form-control" type='text' name="description" value="{{$task->task_description}}"/>
+<textarea class="ckeditor form-control" name="description">{{$task->task_description}}</textarea>
+
         </div>
     </div>
 </div>
