@@ -11,35 +11,17 @@ use Hash;
   
 class AuthController extends Controller
 {
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+
     public function index()
     {
         return view('auth.login');
     }  
       
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function registration()
     {
-        if(Auth::check())
-        {
             return view('auth.registration');
-        }
-        return view('auth.login');
     }
       
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function postLogin(Request $request)
     {
         $request->validate([
@@ -55,11 +37,6 @@ class AuthController extends Controller
         
     }
       
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function postRegistration(Request $request)
     {  
         $request->validate([
@@ -72,11 +49,7 @@ class AuthController extends Controller
         $check = $this->create($data);
         return redirect()->route('task.index');
     }
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+
     public function create(array $data)
     {
       return User::create([
@@ -85,12 +58,7 @@ class AuthController extends Controller
         'password' => Hash::make($data['password'])
       ]);
     }
-    
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+
     public function logout() {
         Session::flush();
         Auth::logout();

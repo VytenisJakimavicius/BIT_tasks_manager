@@ -31,16 +31,19 @@
         <tr>
             <th>Nr</th>
             <th>Name</th>
-            <th>Actions</th>
         </tr>
         @foreach ($status as $statusdata)
         <tr>
             <td>{{$statusdata->id}}</td>
-            <td>{{$statusdata->name}}</td>
             <td>
-            <form method="post" action='{{route("status.destroy", [$statusdata])}}'>@csrf
-                <button class="btn btn-danger" type="submit">Delete</button>
-            </form>
+            <div class="statusname">
+                {{$statusdata->name}}
+            </div>
+            <div class="statusdelete">
+                <form method="post" action='{{route("status.destroy", [$statusdata])}}'>@csrf
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+            </div>
             </td>
         </tr>
         @endforeach

@@ -8,9 +8,10 @@
       <div class="row justify-content-center">
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header">Please Login</div>
+                  <div class="card-header">Please Login
+                    <a class="btn btn-secondary createbtn" style="float: right;" href="{{route('register')}}">Create New User</a>
+                  </div>
                   <div class="card-body">
-  
                       <form action="{{ route('login.post') }}" method="POST">
                           @csrf
                           <div class="form-group row">

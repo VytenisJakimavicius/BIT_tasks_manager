@@ -2,7 +2,6 @@
     @extends('components.header')
     @section('content')
 </div>
-
     <table class="table table-striped" background-color= "green";>
         <tr>
             <td>
@@ -22,7 +21,6 @@
         </td>
     </table>
 
-    <div class="main">
         <table class="table table-striped" background-color= "green";>
             <tr class = "tr">
                 <th>@sortablelink('id', 'Nr')</th>

@@ -11,14 +11,9 @@ use Sortable;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-
         if(Auth::check())
         {
             $task = Task::sortable()->paginate(10);
@@ -39,11 +34,6 @@ class TaskController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         if(Auth::check())
@@ -54,12 +44,6 @@ class TaskController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTaskRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreTaskRequest $request)
     {
             $task = new Task;
@@ -70,12 +54,6 @@ class TaskController extends Controller
             return redirect()->route('task.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function show(Task $task)
     {
         if(Auth::check())
@@ -85,29 +63,16 @@ class TaskController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Task $task)
     {
         if(Auth::check())
-        {        
+        {
             $status = Status::all();
             return view("task.edit", ['task'=>$task, 'status'=>$status]);
         }
         return view('auth.login');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTaskRequest  $request
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateTaskRequest $request, Task $task)
     {
             $task->task_name = $request->name;
@@ -117,13 +82,6 @@ class TaskController extends Controller
             return redirect()->route('task.show', ['task'=>$task]);
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Task $task)
     {
             $task->delete();
